@@ -1,7 +1,7 @@
-<nav class="fixed w-full top-0 bg-gray-100 z-10 py-4 shadow-md ">
+<nav class="fixed w-full top-0 bg-gray-100 z-10 py-4 shadow-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="relative flex items-center justify-between h-16">
-      <!-- Left Section -->
+      <!-- Left Section: Logo -->
       <div class="flex-shrink-0 flex items-center">
         <%= link_to root_path do %>
           <%= image_tag 'logo.png', class: 'block lg:hidden h-12 w-auto' %>
@@ -11,20 +11,36 @@
         <% end %>
       </div>
 
-      <!-- Center Links (visible on medium screens and above) -->
+      <!-- Center Section: Shop Link -->
       <div class="hidden sm:flex flex-1 items-center justify-center">
         <div class="flex space-x-10">
           <%= link_to 'Shop', root_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" %>
         </div>
       </div>
 
-      <!-- Right Section -->
-      <div class="hidden sm:flex items-center">
-        <div class="flex space-x-10">
-          <%= link_to root_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
-            <%= icon 'fa-solid', 'shopping-cart' %>
+      <!-- Right Section: Icons -->
+      <div class="hidden sm:flex items-center space-x-6">
+        <% if user_signed_in? %>
+          <!-- Sign Out Link -->
+          <%= button_to destroy_user_session_path, method: :delete, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
+            <%= icon 'fa-solid', 'sign-out-alt' %>
           <% end %>
-        </div>
+        <% else %>
+          <!-- Sign Up Link -->
+          <%= link_to new_user_registration_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
+            <%= icon 'fa-solid', 'user-plus' %>
+          <% end %>
+
+          <!-- Sign In Link -->
+          <%= link_to new_user_session_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
+            <%= icon 'fa-solid', 'sign-in-alt' %>
+          <% end %>
+        <% end %>
+
+        <!-- Shopping Cart Icon -->
+        <%= link_to root_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
+          <%= icon 'fa-solid', 'shopping-cart' %>
+        <% end %>
       </div>
 
       <!-- Hamburger Menu Button (visible on small screens) -->
@@ -42,6 +58,18 @@
   <div class="sm:hidden bg-gray-100 border-t border-gray-200 px-4 py-4 hidden" id="mobile-menu">
     <div class="space-y-4">
       <%= link_to 'Shop', root_path, class: "block text-gray-500 hover:underline py-2 rounded-md text-md font-medium" %>
+      <% if user_signed_in? %>
+        <%= button_to destroy_user_session_path, method: :delete, class: "block text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
+          <%= icon 'fa-solid', 'sign-out-alt' %>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_registration_path, class: "block text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
+          <%= icon 'fa-solid', 'user-plus' %>
+        <% end %>
+        <%= link_to new_user_session_path, class: "block text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
+          <%= icon 'fa-solid', 'sign-in-alt' %>
+        <% end %>
+      <% end %>
       <%= link_to root_path, class: "block text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
         <%= icon 'fa-solid', 'shopping-cart' %>
       <% end %>
