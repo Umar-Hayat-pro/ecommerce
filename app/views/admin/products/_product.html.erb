@@ -1,0 +1,26 @@
+<div id="<%= dom_id product %>" class="border-b pb-5 mb-5">
+  <p class="my-2">
+    <strong class="font-medium text-gray-700">Name:</strong>
+    <span class="text-gray-900"><%= product.name %></span>
+  </p>
+
+  <p class="my-2">
+    <strong class="font-medium text-gray-700">Description:</strong>
+    <span class="text-gray-900"><%= product.description %></span>
+  </p>
+
+  <p class="my-2">
+    <strong class="font-medium text-gray-700">Price:</strong>
+    <span class="text-gray-900"><%= number_to_currency(product.price) %></span>
+  </p>
+
+  <p class="my-2">
+    <strong class="font-medium text-gray-700">Category:</strong>
+    <span class="text-gray-900"><%= product.category.name %></span> <!-- assuming category has a name -->
+  </p>
+
+  <p class="my-2">
+    <strong class="font-medium text-gray-700">Active:</strong>
+    <span class="text-gray-900"><%= product.active ? 'Yes' : 'No' %></span>
+  </p>
+</div>

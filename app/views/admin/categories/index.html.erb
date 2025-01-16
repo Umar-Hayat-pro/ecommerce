@@ -19,6 +19,9 @@
                 <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
                   icon
                 </th>
+                 <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
+                  id
+                </th>
                 <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
                   Name
                 </th>
@@ -30,6 +33,9 @@
             <tbody>
               <% @admin_categories.each do |c| %>
                 <tr class="bg-gray-50 border-b">
+                   <td class="px-6 py-4 whitepsace-nowrap tex-sm font-medium text-gray-800">
+                    <%= c.id %>
+                  </td>
                   <td class="px-6 py-4 whitepsace-nowrap tex-sm font-medium text-gray-800 underline">
                     <%= c.image.present? ? image_tag(c.image.variant(:thumb)) : image_tag("https://placehold.co/50") %>
                   </td>
