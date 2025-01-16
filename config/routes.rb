@@ -18,4 +18,5 @@ Rails.application.routes.draw do
 
   # Admin page (Only accessable with authentication)
   get "admin" => "admin#index"
+  get "admin/tenants" => "admin/tenants#index"
 end
