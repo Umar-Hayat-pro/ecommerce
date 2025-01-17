@@ -4,7 +4,7 @@
   <% end %>
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Products</h1>
-    <%= link_to "New category", new_admin_product_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to "+ New Product", new_admin_product_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
   <div class="flex flex-col w-full">
     <div class="overlow-x-auto sm:mx-0.5 lg:mx-0.5">
@@ -15,6 +15,9 @@
               <tr>
                 <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
                   id
+                </th>
+                 <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
+                  icon
                 </th>
                 <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
                   Name
@@ -39,6 +42,9 @@
                   <td class="px-6 py-4 whitepsace-nowrap tex-sm font-medium text-gray-800">
                     <%= p.id %>
                   </td>
+                   <td class="px-6 py-4 whitepsace-nowrap tex-sm font-medium text-gray-800">
+                   <%= p.images.any? ? image_tag(p.images.first.variant(:thumb)) : image_tag("https://placehold.co/50") %>
+                  </td>
                   <td class="px-6 py-4 whitepsace-nowrap tex-sm font-medium text-gray-800 underline">
                     <%= link_to p.name, admin_product_path(p) %>
                   </td>
@@ -49,7 +55,7 @@
                     <%= p.category.name %>
                   </td>
                   <td class="px-6 py-4 whitepsace-nowrap tex-sm font-medium text-gray-800">
-                    <%= p.price %>
+                    $<%= (p.price/100.0).to_s %>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                     <% if p.active %>
