@@ -42,6 +42,9 @@
   <%= form.file_field :images, multiple: true, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
 </div>
 
+<div class="my-5">
+ <%= link_to "Product Stock",  admin_product_stocks_path(admin_product), class: "underline" %>
+</div>
   <div class="my-5">
     <%= form.label :active %>
     <%= form.check_box :active, class: "block mt-2 h-5 w-5" %>

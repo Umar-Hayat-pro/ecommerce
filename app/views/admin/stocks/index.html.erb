@@ -1,0 +1,44 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center mb-5">
+    <h1 class="font-bold text-4xl">Stocks</h1>
+    <%= link_to "New stock", new_admin_product_stock_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div id="admin_stocks" class="min-w-full overflow-x-auto">
+    <table class="table-auto w-full bg-white border-collapse">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="px-4 py-2 text-left">Product Name</th>
+          <th class="px-4 py-2 text-left">Amount</th>
+          <th class="px-4 py-2 text-left">Size</th>
+          <th class="px-4 py-2 text-left">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @admin_stocks.each do |stock| %>
+          <tr class="border-b hover:bg-gray-50">
+            <td class="px-4 py-2">
+              <%= stock.product.name %>
+            </td>
+            <td class="px-4 py-2">
+              <%= stock.amount %>
+            </td>
+            <td class="px-4 py-2">
+              <%= stock.size %>
+            </td>
+            <td class="px-4 py-2">
+              <% if action_name != "show" %>
+                <%= link_to "Show", [:admin, stock.product, stock], class: "inline-block py-2 px-4 bg-blue-600 text-white rounded-lg font-medium" %>
+                <%= link_to "Edit", edit_admin_product_stock_path(stock.product, stock), class: "inline-block py-2 px-4 ml-2 bg-gray-100 text-gray-800 rounded-lg font-medium" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
