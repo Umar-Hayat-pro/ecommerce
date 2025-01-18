@@ -1,27 +1,62 @@
-<div id="<%= dom_id order %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Customer email:</strong>
-    <%= order.customer_email %>
-  </p>
+<div class="bg-white shadow-md rounded-lg p-6 mb-6 border">
+  <div id="<%= dom_id order %>">
+    <!-- Customer Email -->
+    <p class="my-4">
+      <strong class="block text-gray-700 font-medium mb-1">Customer Email:</strong>
+      <span class="text-gray-800"><%= order.customer_email %></span>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Fulfilled:</strong>
-    <%= order.fulfilled %>
-  </p>
+    <!-- Fulfilled Status -->
+    <p class="my-4">
+      <strong class="block text-gray-700 font-medium mb-1">Fulfilled:</strong>
+      <span class="text-gray-800"><%= order.fulfilled ? "Yes" : "No" %></span>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Total:</strong>
-    <%= order.total %>
-  </p>
+    <!-- Total Amount -->
+    <p class="my-4">
+      <strong class="block text-gray-700 font-medium mb-1">Total:</strong>
+      <span class="text-gray-800">$<%= order.total / 100.0 %></span>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Address:</strong>
-    <%= order.address %>
-  </p>
+    <!-- Address -->
+    <p class="my-4">
+      <strong class="block text-gray-700 font-medium mb-1">Address:</strong>
+      <span class="text-gray-800"><%= order.address %></span>
+    </p>
 
-  <% if action_name != "show" %>
-    <%= link_to "Show this order", [:admin,order], class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this order", edit_admin_order_path(order), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+    <!-- Products Ordered -->
+    <% if order.order_products.any? %>
+      <div class="my-6">
+        <strong class="block text-gray-700 font-medium mb-3">Products Ordered:</strong>
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white border border-gray-200 text-gray-800 text-sm">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="px-4 py-2 text-left font-medium text-gray-700 border-b">Product Name</th>
+                <th class="px-4 py-2 text-left font-medium text-gray-700 border-b">Size</th>
+                <th class="px-4 py-2 text-left font-medium text-gray-700 border-b">Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% order.order_products.each do |op| %>
+                <tr>
+                  <td class="px-4 py-2 border-b"><%= op.product.name %></td>
+                  <td class="px-4 py-2 border-b"><%= op.product.size %></td>
+                  <td class="px-4 py-2 border-b"><%= op.product.quantity %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Action Buttons -->
+    <% if action_name != "show" %>
+      <div class="mt-6 flex items-center space-x-4">
+        <%= link_to "Show this order", [:admin, order], class: "rounded-lg py-2 px-4 bg-blue-600 text-white font-medium hover:bg-blue-700" %>
+        <%= link_to "Edit this order", edit_admin_order_path(order), class: "rounded-lg py-2 px-4 bg-gray-600 text-white font-medium hover:bg-gray-700" %>
+      </div>
+    <% end %>
+  </div>
 </div>
