@@ -3,8 +3,8 @@ class Admin::OrdersController < AdminController
 
   # GET /admin/orders or /admin/orders.json
   def index
-    @fulfilled_orders = Order.where(fulfilled: true).order(created_at: :asc)
-    @not_fulfilled_orders = Order.where(fulfilled: false).order(created_at: :asc)
+    @fulfilled_orders = Order.fulfilled_orders
+    @not_fulfilled_orders = Order.un_fulfilled_orders
   end
 
   # GET /admin/orders/1 or /admin/orders/1.json
