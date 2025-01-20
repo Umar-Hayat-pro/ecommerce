@@ -1,0 +1,32 @@
+<h1 class="text-4xl font-bold text-gray-800 text-center mt-8">Category: <%= @category.name %></h1>
+<div class="min-h-screen flex flex-col md:flex-row justify-center items-start mt-8 px-4 lg:px-12">
+
+  <!-- Filter Sidebar -->
+  <div class="w-full md:w-1/4 bg-gray-100 p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Filter</h2>
+    <%= form_with url: category_path(@category), method: :get, class: "space-y-4" do |form| %>
+      <%= form.number_field :min, placeholder: "Min Price", class: "w-full border border-gray-300 rounded-md p-2" %>
+      <%= form.number_field :max, placeholder: "Max Price", class: "w-full border border-gray-300 rounded-md p-2" %>
+      <%= form.submit "Apply Filter", class: "w-full bg-gray-800 text-white rounded-md py-2 cursor-pointer hover:bg-gray-900 transition duration-300" %>
+    <% end %>
+    <%= form_with url: category_path(@category), method: :get, class: "mt-4" do |form| %>
+      <%= form.submit "Clear Filters", class: "w-full bg-red-500 text-white rounded-md py-2 cursor-pointer hover:bg-red-600 transition duration-300" %>
+    <% end %>
+  </div>
+
+  <!-- Products Grid -->
+  <div class="flex-grow flex flex-wrap gap-8 justify-center md:justify-start items-start mt-8 md:mt-0 md:ml-8">
+    <% if @products.empty? %>
+      <p class="text-2xl text-gray-800">No products found</p>
+    <% else %>
+      <% @products.each do |product| %>
+        <%= link_to product_path(product), class: "block max-w-xs bg-white p-4 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-transform duration-300" do %>
+          <div class="flex flex-col items-center">
+            <%= product.images.first ? image_tag(product.images.first.variant(:medium), class: "rounded-lg object-cover w-full h-48") : image_tag("https://placehold.co/250", class: "rounded-lg object-cover w-full h-48") %>
+            <p class="mt-4 font-medium text-gray-800 text-center"><%= product.name %></p>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
