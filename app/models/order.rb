@@ -6,4 +6,6 @@ class Order < ApplicationRecord
   def self.un_fulfilled_orders
     where(fulfilled: false).order(created_at: :asc)
   end
+
+  has_many :order_products
 end
