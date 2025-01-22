@@ -77,3 +77,5 @@ end
 gem "devise", "~> 4.9"
 
 gem "font-awesome-sass", "~> 6.7"
+
+gem "stripe", "~> 13.3"

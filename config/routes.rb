@@ -16,13 +16,16 @@ Rails.application.routes.draw do
   authenticated :admin_user do
     root to: "admin#index", as: :admin_root
   end
-
+  
   # Root path for users and authenticated users (admin)
   root "home#index"
-  get "cart" => "carts#show"
-  post "checkout" => "checkouts#create"
   resources :categories, only: [:show]
   resources :products, only: [:show]
+  
+  get "cart" => "carts#show"
+  post "checkout" => "checkouts#create"
+  get "success" => "checkouts#success"
+  get "cancel" => "checkouts#cancel"
 
   # Admin page (Only accessable with authentication)
   get "admin" => "admin#index"
