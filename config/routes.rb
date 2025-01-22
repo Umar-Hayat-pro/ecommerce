@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   # Root path for users and authenticated users (admin)
   root "home#index"
   get "cart" => "carts#show"
+  post "checkout" => "checkouts#create"
   resources :categories, only: [:show]
   resources :products, only: [:show]
 
