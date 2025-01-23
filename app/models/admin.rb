@@ -4,7 +4,4 @@ class Admin < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  def self.with_role
-    select("'Admin' AS role, #{table_name}.*")
-  end
 end
