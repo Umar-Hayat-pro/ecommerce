@@ -19,6 +19,11 @@ Rails.application.routes.draw do
   
   # Root path for users and authenticated users (admin)
   root "home#index"
+  get "about" => "home#about"
+  get "contact" => "home#contact"
+
+  
+  get "/profile" => "user_authentication#index"
   resources :categories, only: [:show]
   resources :products, only: [:show]
   

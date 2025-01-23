@@ -1,0 +1,94 @@
+<div class="bg-gray-50 min-h-screen">
+  <!-- Hero Section -->
+  <section class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl">
+        Contact Us
+      </h1>
+      <p class="mt-4 text-lg text-gray-600">
+        Got a question or feedback? We’d love to hear from you. Reach out to us below!
+      </p>
+    </div>
+  </section>
+  <!-- Contact Form Section -->
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white shadow-lg rounded-lg p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
+        <form action="/contact" method="POST">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Name -->
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700">
+                Your Name
+              </label>
+              <input type="text" id="name" name="name" required
+                class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700">
+                Your Email
+              </label>
+              <input type="email" id="email" name="email" required
+                class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+          </div>
+          <!-- Subject -->
+          <div class="mt-6">
+            <label for="subject" class="block text-sm font-medium text-gray-700">
+              Subject
+            </label>
+            <input type="text" id="subject" name="subject" required
+              class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+          </div>
+          <!-- Message -->
+          <div class="mt-6">
+            <label for="message" class="block text-sm font-medium text-gray-700">
+              Message
+            </label>
+            <textarea id="message" name="message" rows="6" required
+              class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+          </div>
+          <!-- Submit Button -->
+          <div class="mt-6">
+            <button type="submit"
+              class="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              Send Message
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <!-- Contact Details -->
+  <section class="bg-gray-100 py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Our Contact Details</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+        <!-- Address -->
+        <div>
+          <div class="flex justify-center items-center text-indigo-600">
+            <%= icon 'fa-solid', 'map-marker-alt', class: 'w-8 h-8' %>
+          </div>
+          <p class="mt-4 text-gray-600">123 Main Street<br>
+            New York, NY 10001</p>
+        </div>
+        <!-- Phone -->
+        <div>
+          <div class="flex justify-center items-center text-indigo-600">
+            <%= icon 'fa-solid', 'phone', class: 'w-8 h-8' %>
+          </div>
+          <p class="mt-4 text-gray-600">+1 (555) 123-4567</p>
+        </div>
+        <!-- Email -->
+        <div>
+          <div class="flex justify-center items-center text-indigo-600">
+            <%= icon 'fa-solid', 'envelope', class: 'w-8 h-8' %>
+          </div>
+          <p class="mt-4 text-gray-600">contact@example.com</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

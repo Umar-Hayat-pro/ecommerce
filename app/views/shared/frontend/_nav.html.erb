@@ -1,4 +1,4 @@
-<nav class="fixed w-full top-0 bg-gray-100 z-10 py-4 shadow-md">
+<nav class="w-full top-0 bg-gray-100 z-10 py-4 shadow-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="relative flex items-center justify-between h-16">
       <!-- Left Section: Logo -->
@@ -10,40 +10,46 @@
           <%= image_tag 'logo.png', class: 'hidden lg:block h-12 w-auto' %>
         <% end %>
       </div>
-
-      <!-- Center Section: Shop Link -->
+      <!-- Center Section: Links -->
       <div class="hidden sm:flex flex-1 items-center justify-center">
         <div class="flex space-x-10">
           <%= link_to 'Shop', root_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" %>
+          <%= link_to 'About Us', about_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" %>
+          <%= link_to 'Contact', contact_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" %>
         </div>
       </div>
-
-      <!-- Right Section: Icons -->
+      <!-- Right Section: Icons and Dropdowns -->
       <div class="hidden sm:flex items-center space-x-6">
         <% if user_signed_in? %>
-          <!-- Sign Out Link -->
-          <%= button_to destroy_user_session_path, method: :delete, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
-            <%= icon 'fa-solid', 'sign-out-alt' %>
-          <% end %>
+          <!-- My Account Dropdown -->
+          <div class="relative group">
+            <button class="text-gray-500 hover:text-gray-700 py-2 rounded-md text-md font-medium">
+              My Account
+            </button>
+            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              <%= link_to 'Profile', profile_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+              <%= link_to 'Orders', root_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+              <%= link_to 'Settings', root_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+              <%= button_to destroy_user_session_path, method: :delete, class: "block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100" do %>
+                Sign Out
+              <% end %>
+            </div>
+          </div>
         <% else %>
-          <!-- Sign Up Link -->
+          <!-- Sign Up and Sign In -->
           <%= link_to new_user_registration_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
             <%= icon 'fa-solid', 'user-plus' %>
           <% end %>
-
-          <!-- Sign In Link -->
           <%= link_to new_user_session_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
             <%= icon 'fa-solid', 'sign-in-alt' %>
           <% end %>
         <% end %>
-
-        <!-- Shopping Cart Icon -->
+        <!-- Shopping Cart -->
         <%= link_to cart_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
           <%= icon 'fa-solid', 'shopping-cart' %>
         <% end %>
       </div>
-
-      <!-- Hamburger Menu Button (visible on small screens) -->
+      <!-- Hamburger Menu Button (for mobile) -->
       <div class="sm:hidden flex items-center">
         <button type="button" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300" aria-expanded="false" aria-label="Toggle navigation" id="menu-toggle">
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -53,14 +59,18 @@
       </div>
     </div>
   </div>
-
   <!-- Mobile Menu -->
   <div class="sm:hidden bg-gray-100 border-t border-gray-200 px-4 py-4 hidden" id="mobile-menu">
     <div class="space-y-4">
       <%= link_to 'Shop', root_path, class: "block text-gray-500 hover:underline py-2 rounded-md text-md font-medium" %>
+      <%= link_to 'About us', root_path, class: "block text-gray-500 hover:underline py-2 rounded-md text-md font-medium" %>
+      <%= link_to 'Contact', root_path, class: "block text-gray-500 hover:underline py-2 rounded-md text-md font-medium" %>
       <% if user_signed_in? %>
-        <%= button_to destroy_user_session_path, method: :delete, class: "block text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
-          <%= icon 'fa-solid', 'sign-out-alt' %>
+        <%= link_to 'Profile', root_path, class: "block text-gray-500 hover:underline py-2 rounded-md text-md font-medium" %>
+        <%= link_to 'Orders', root_path, class: "block text-gray-500 hover:underline py-2 rounded-md text-md font-medium" %>
+        <%= link_to 'Settings', root_path, class: "block text-gray-500 hover:underline py-2 rounded-md text-md font-medium" %>
+        <%= button_to destroy_user_session_path, method: :delete, class: "block text-red-600 hover:bg-gray-100 py-2 rounded-md text-md font-medium" do %>
+          Sign Out
         <% end %>
       <% else %>
         <%= link_to new_user_registration_path, class: "block text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
@@ -70,13 +80,12 @@
           <%= icon 'fa-solid', 'sign-in-alt' %>
         <% end %>
       <% end %>
-      <%= link_to root_path, class: "block text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
+      <%= link_to cart_path, class: "block text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
         <%= icon 'fa-solid', 'shopping-cart' %>
       <% end %>
     </div>
   </div>
 </nav>
-
 <script>
   // Toggle mobile menu visibility
   document.getElementById('menu-toggle').addEventListener('click', function () {
